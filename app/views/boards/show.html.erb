@@ -1,0 +1,32 @@
+<h1><%= @board.name %></h1>
+
+<%= link_to 'edit this board' , edit_board_path(@board) %>
+<br>
+<%= link_to 'delete this board' , board_path(@board) , method: :delete, comfirm: 'are you ok?' %>
+
+<hr>
+
+<h1>Comments</h1>
+<% @board.comments.each do |c| %>
+  <p>
+  <%= c.content %>
+  <br>
+  <%= c.created_at.strftime("%Y/%M/%D") %>
+  <br>
+  <%= link_to 'edit' , edit_board_comment_path(@board, c) %>
+  <br>
+  <%= link_to 'delete' , board_comment_path(@board,c), method: :delete , confirm: 'Are you sure?' %>
+  </p>
+ <% end %>
+ 
+ <hr>
+
+ <h1>new comment</h1>
+ <%= form_for [@board, @board.comments.build] do |f| %>
+   <%= f.text_area :content %>
+   <%= f.submit %>
+  <% end %>
+   
+ <hr>
+ 
+<%= link_to 'back to index' , boards_path() %>

@@ -1,0 +1,8 @@
+<% @boards.each do |b| %>
+  <%= b.name %>
+  <%= link_to 'show' , board_path(b) %>
+ <% end %>
+ 
+ <hr>
+ 
+ <%= link_to  'new board', new_board_path() %>
